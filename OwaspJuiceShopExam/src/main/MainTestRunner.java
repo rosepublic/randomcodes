@@ -1,8 +1,8 @@
 package main;
 
 import base.BaseClass;
-import tests.TestLoginPage;
 import tests.TestSuccessOrderViaCC;
+import tests.TestSuccessOrderViaWallet;
 
 public class MainTestRunner extends BaseClass {
 
@@ -14,6 +14,9 @@ public class MainTestRunner extends BaseClass {
 		
 		TestSuccessOrderViaCC sovcc = new TestSuccessOrderViaCC();
 		sovcc.testSuccessOrderViaCC();
+		
+		TestSuccessOrderViaWallet sovw = new TestSuccessOrderViaWallet();
+		sovw.testsuccessorderviawallet();
 	}
 	
 	
