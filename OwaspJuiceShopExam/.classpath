@@ -9,5 +9,8 @@
 	<classpathentry kind="lib" path="C:/Users/Public.DESKTOP-28LRF9E/Downloads/selenium-java-3.141.59/libs/okio-1.14.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Public.DESKTOP-28LRF9E/Downloads/selenium-java-3.141.59/client-combined-3.141.59.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Public.DESKTOP-28LRF9E/Downloads/selenium-java-3.141.59/client-combined-3.141.59-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Public.DESKTOP-28LRF9E/Downloads/jar_files/extentreports-2.41.2.jar" sourcepath="C:/Users/Public.DESKTOP-28LRF9E/Downloads/jar_files/extentreports-2.41.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Public.DESKTOP-28LRF9E/Downloads/jar_files/freemarker-2.3.23.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Public.DESKTOP-28LRF9E/Downloads/org.apache.commons.io.jar/org.apache.commons.io.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
