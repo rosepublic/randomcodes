@@ -44,7 +44,8 @@ public class BaseClass {
 		reports = new ExtentReports(System.getProperty("user.dir") + "\\HtmlReport\\index.html", true);
 		System.out.println("reports location: " + System.getProperty("user.dir") + "\\HtmlReport\\index.html");
 		
-		sspath = System.getProperty("user.dir") + "\\HtmlReport\\pass.png";
+		//sspath = System.getProperty("user.dir") + "\\HtmlReport\\pass.png";
+		sspath = System.getProperty("user.dir") + "\\HtmlReport";
 		
 	}
 	
@@ -76,7 +77,8 @@ public class BaseClass {
 		reports = new ExtentReports(System.getProperty("user.dir") + "\\HtmlReport\\index.html", true);
 		System.out.println("reports location: " + System.getProperty("user.dir") + "\\HtmlReport\\index.html");
 		
-		sspath = System.getProperty("user.dir") + "\\HtmlReport\\pass.png";
+		//sspath = System.getProperty("user.dir") + "\\HtmlReport\\pass.png";
+		sspath = System.getProperty("user.dir") + "\\HtmlReport";
 	}
 	
 	public void waitfornextpagetoload() {
@@ -111,7 +113,7 @@ public class BaseClass {
 		
 	}
 	
-	public void takeScreenShot( WebDriver driver) {
+	public void takeScreenShot( WebDriver driver, String sspath) {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(scrFile, new File(sspath));
