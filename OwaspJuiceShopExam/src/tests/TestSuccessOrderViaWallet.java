@@ -4,8 +4,8 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 import base.BaseClass;
-import main.MainTestRunner2;
-import main.MainTestRunner2;
+import main.MainTestRunner;
+import main.MainTestRunner;
 import pages.AddressPage;
 import pages.BasketPage;
 import pages.DeliveryMethodPage;
@@ -24,7 +24,7 @@ public class TestSuccessOrderViaWallet extends BaseClass{
 	PaymentOptionPage payoptionpage;
 	OrderSummaryPage ordsumpage;
 	
-	public ExtentTest testsuccessorderviawallet(MainTestRunner2 mtr) {
+	public ExtentTest testsuccessorderviawallet(MainTestRunner mtr) {
 		loginpage = new LoginPage();
 		loginpage.driver = mtr.driver;
 		

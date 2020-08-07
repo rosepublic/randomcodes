@@ -12,11 +12,21 @@ public class MainTestRunner extends BaseClass {
 		//TestLoginPage tlp = new TestLoginPage();
 		//tlp.testloginpage();
 		
+		MainTestRunner mtr = new MainTestRunner();
+		mtr.setupReports();
+		mtr.test = mtr.reports.startTest("TestSuccessOrderViaCC","Verify that able to order via cc");
 		TestSuccessOrderViaCC sovcc = new TestSuccessOrderViaCC();
-		sovcc.testSuccessOrderViaCC();
+		sovcc.testSuccessOrderViaCC(mtr);
+		mtr.reports.endTest(mtr.test);
+		mtr.reports.flush();
 		
+		
+		
+		mtr.test = mtr.reports.startTest("TestSuccessOrderViaWallet","Verify that able to order via Wallet");
 		TestSuccessOrderViaWallet sovw = new TestSuccessOrderViaWallet();
-		sovw.testsuccessorderviawallet();
+		sovw.testsuccessorderviawallet(mtr);
+		mtr.reports.endTest(mtr.test);
+		mtr.reports.flush();
 	}
 	
 	
