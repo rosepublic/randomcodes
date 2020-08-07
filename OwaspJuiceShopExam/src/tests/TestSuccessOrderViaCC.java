@@ -42,7 +42,6 @@ public class TestSuccessOrderViaCC extends BaseClass{
 		basketpage = new BasketPage();
 		basketpage.driver = shoppage.driver;
 		basketpage.clickOnCheckOutBtn();
-		//shoppage.clickOnCheckOutBtn();
 		basketpage.pause5seconds();
 		test.log(LogStatus.PASS,"Check Out Successful");
 		shoppage.clickOnAddressRadioBtn1();
