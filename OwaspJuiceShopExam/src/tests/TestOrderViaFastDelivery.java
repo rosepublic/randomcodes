@@ -79,7 +79,7 @@ public ExtentTest testorderviafastdelivery(MainTestRunner mtr) {
 		
 		OrderSummaryPage ordsumpage = new OrderSummaryPage();
 		ordsumpage.driver = payoptionpage.driver;
-		//ordsumpage.clickOnPlaceOrderBtn();
+		ordsumpage.clickOnPlaceOrderBtn();
 		mtr.test.log(LogStatus.PASS,"Order Placement Successful");
 		pause5seconds();
         mtr.takeScreenShot(loginpage.driver,mtr.sspath + "\\passFastDelivery.png"); 
