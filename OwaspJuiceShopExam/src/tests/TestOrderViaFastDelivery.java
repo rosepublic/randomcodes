@@ -1,6 +1,5 @@
 package tests;
 
-import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -10,11 +9,11 @@ import pages.AddressPage;
 import pages.BasketPage;
 import pages.DeliveryMethodPage;
 import pages.LoginPage;
+import pages.OrderSummaryPage;
 import pages.PaymentOptionPage;
 import pages.ShopPage;
-import pages.*;
 
-public class TestSuccessOrderViaCC extends BaseClass{
+public class TestOrderViaFastDelivery extends BaseClass{
 
 	LoginPage loginpage;
 	ShopPage shoppage;
@@ -24,7 +23,7 @@ public class TestSuccessOrderViaCC extends BaseClass{
 	PaymentOptionPage payoptionpage;
 	OrderSummaryPage ordsumpage;
 	
-public ExtentTest testSuccessOrderViaCC(MainTestRunner mtr) {
+public ExtentTest testorderviafastdelivery(MainTestRunner mtr) {
 		
 		loginpage = new LoginPage();
 		loginpage.driver = mtr.driver;
@@ -63,11 +62,12 @@ public ExtentTest testSuccessOrderViaCC(MainTestRunner mtr) {
 		
 		DeliveryMethodPage deliverypage = new DeliveryMethodPage();
 		deliverypage.driver = addpage.driver;
-		deliverypage.clickOnOneDayDel();
+		deliverypage.pause5seconds();
+		deliverypage.clickOnfastDelivery();
 		deliverypage.pause5seconds();	
 		deliverypage.clickOnProceedToPayBtn();
 		deliverypage.pause5seconds();
-		mtr.test.log(LogStatus.PASS,"Delivery Speed Confirmation, Successful");
+		mtr.test.log(LogStatus.PASS,"Delivery Speed: Fast Delivery. Confirmed Successful");
 		
 		PaymentOptionPage payoptionpage = new PaymentOptionPage();
 		payoptionpage.driver = deliverypage.driver;
@@ -82,11 +82,9 @@ public ExtentTest testSuccessOrderViaCC(MainTestRunner mtr) {
 		//ordsumpage.clickOnPlaceOrderBtn();
 		mtr.test.log(LogStatus.PASS,"Order Placement Successful");
 		pause5seconds();
-        mtr.takeScreenShot(loginpage.driver,mtr.sspath + "\\passCC.png"); 
-        mtr.test.log(LogStatus.INFO, "Snapshot below: " + mtr.test.addScreenCapture(mtr.sspath + "\\passCC.png"));
+        mtr.takeScreenShot(loginpage.driver,mtr.sspath + "\\passFastDelivery.png"); 
+        mtr.test.log(LogStatus.INFO, "Snapshot below: " + mtr.test.addScreenCapture(mtr.sspath + "\\passFastDelivery.png"));
 		ordsumpage.driver.quit();
 		return mtr.test;		
 }
-
-	}
-
+}

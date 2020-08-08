@@ -1,6 +1,5 @@
 package tests;
 
-import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -10,11 +9,11 @@ import pages.AddressPage;
 import pages.BasketPage;
 import pages.DeliveryMethodPage;
 import pages.LoginPage;
+import pages.OrderSummaryPage;
 import pages.PaymentOptionPage;
 import pages.ShopPage;
-import pages.*;
 
-public class TestSuccessOrderViaCC extends BaseClass{
+public class TestInvalidCoupon extends BaseClass {
 
 	LoginPage loginpage;
 	ShopPage shoppage;
@@ -22,10 +21,9 @@ public class TestSuccessOrderViaCC extends BaseClass{
 	AddressPage addpage;
 	DeliveryMethodPage deliverypage;
 	PaymentOptionPage payoptionpage;
-	OrderSummaryPage ordsumpage;
-	
-public ExtentTest testSuccessOrderViaCC(MainTestRunner mtr) {
-		
+
+	public ExtentTest testInvalidCoupon(MainTestRunner mtr) {
+
 		loginpage = new LoginPage();
 		loginpage.driver = mtr.driver;
 		loginpage.setup();
@@ -36,8 +34,7 @@ public ExtentTest testSuccessOrderViaCC(MainTestRunner mtr) {
 		loginpage.sendKeysTopassword();
 		loginpage.clickOnLoginButton();
 		loginpage.waitfornextpagetoload();
-		mtr.test.log(LogStatus.PASS,"Login Successful");
-     
+		mtr.test.log(LogStatus.PASS, "Login Successful");
 
 		shoppage = new ShopPage();
 		shoppage.driver = loginpage.driver;
@@ -46,47 +43,52 @@ public ExtentTest testSuccessOrderViaCC(MainTestRunner mtr) {
 		shoppage.pause5seconds();
 		shoppage.clickOnBasketBtn();
 		shoppage.pause5seconds();
-		
+
 		basketpage = new BasketPage();
 		basketpage.driver = shoppage.driver;
 		basketpage.clickOnCheckOutBtn();
 		basketpage.pause5seconds();
-		mtr.test.log(LogStatus.PASS,"Check Out Successful");
-		
+		mtr.test.log(LogStatus.PASS, "Check Out Successful");
+
 		addpage = new AddressPage();
 		addpage.driver = basketpage.driver;
 		addpage.clickOnAddressRadioBtn1();
 		addpage.pause5seconds();
-		addpage.clickOnProceedToDeliveryOption();	
+		addpage.clickOnProceedToDeliveryOption();
 		addpage.pause5seconds();
-		mtr.test.log(LogStatus.PASS,"Delivery Address Confirmation, Successful");
-		
+		mtr.test.log(LogStatus.PASS, "Delivery Address Confirmation, Successful");
+
 		DeliveryMethodPage deliverypage = new DeliveryMethodPage();
 		deliverypage.driver = addpage.driver;
 		deliverypage.clickOnOneDayDel();
-		deliverypage.pause5seconds();	
+		deliverypage.pause5seconds();
 		deliverypage.clickOnProceedToPayBtn();
 		deliverypage.pause5seconds();
-		mtr.test.log(LogStatus.PASS,"Delivery Speed Confirmation, Successful");
-		
+		mtr.test.log(LogStatus.PASS, "Delivery Speed Confirmation, Successful");
+
 		PaymentOptionPage payoptionpage = new PaymentOptionPage();
 		payoptionpage.driver = deliverypage.driver;
-		payoptionpage.clickOnFirstCCOption();
+		payoptionpage.clickOnCouponExpandBtn();
 		payoptionpage.pause5seconds();
-		payoptionpage.clickOnProceedToOrderSummary();
+		payoptionpage.sendkeysCouponInput();
 		payoptionpage.pause5seconds();
-		mtr.test.log(LogStatus.PASS,"Method of Payment: Credit Card. Confirmed Successful");
+		payoptionpage.clickOnRedeemBtn();
+		payoptionpage.pause5seconds();
 		
-		OrderSummaryPage ordsumpage = new OrderSummaryPage();
-		ordsumpage.driver = payoptionpage.driver;
-		//ordsumpage.clickOnPlaceOrderBtn();
-		mtr.test.log(LogStatus.PASS,"Order Placement Successful");
-		pause5seconds();
-        mtr.takeScreenShot(loginpage.driver,mtr.sspath + "\\passCC.png"); 
-        mtr.test.log(LogStatus.INFO, "Snapshot below: " + mtr.test.addScreenCapture(mtr.sspath + "\\passCC.png"));
-		ordsumpage.driver.quit();
-		return mtr.test;		
-}
+		if (payoptionpage.getInvalidCouponMessage().trim().equalsIgnoreCase("Invalid coupon.")) {
+			mtr.test.log(LogStatus.PASS, "Method of Payment: Invalid Coupon. Confirmed Invalid");
+			mtr.takeScreenShot(payoptionpage.driver, mtr.sspath + "\\passInvalidCoupon.png");
+			mtr.test.log(LogStatus.INFO,
+					"Snapshot below: " + mtr.test.addScreenCapture(mtr.sspath + "\\passInvalidCoupon.png"));
+		}else {
+			mtr.test.log(LogStatus.FAIL, "Method of Payment: Invalid Coupon. Redeem Processed.");
+			mtr.takeScreenShot(payoptionpage.driver, mtr.sspath + "\\failInvalidCoupon.png");
+			mtr.test.log(LogStatus.INFO,
+					"Snapshot below: " + mtr.test.addScreenCapture(mtr.sspath + "\\failInvalidCoupon.png"));
+		}
+			
+		payoptionpage.driver.quit();
 
+		return mtr.test;
 	}
-
+}
