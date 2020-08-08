@@ -14,5 +14,5 @@ How To Run Tests:
 1. Please clear cache first before trying to run.
 2. On Package Explorer, find MainTestRunner.java under 'main' package.
 3. Right click on the MainTestRunner.java class and 'Run As' Java application.
+4. After the run is done, please refresh project and check Test Results under 'HTMLReport' folder in the project.
 
-Note: For Test Results, please see 'HTMLReport' folder in the project. 
